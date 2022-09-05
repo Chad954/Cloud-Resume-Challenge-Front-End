@@ -25,7 +25,7 @@ jobs:
        uses: aws-actions/configure-aws-credentials@v1
        with:
           aws-region: us-east-1
-          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-to-assume: arn:aws:iam::536583961527:role/githubActions
           role-session-name: MySessionName
 
      - name: Deploy static site to S3 bucket
