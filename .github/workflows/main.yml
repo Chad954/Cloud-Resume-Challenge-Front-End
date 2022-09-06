@@ -21,12 +21,11 @@ jobs:
      - name: Build static file
        run: CI=false npm run build
 
-     - name: Configure AWS Credentials
-       uses: aws-actions/configure-aws-credentials@v1
-       with:
-         role-to-assume: arn:aws:iam::536583961527:user/Cloud-Resume-GithubActions
-         role-session-name: samplerolesession
-         aws-region: us-east-1
+      - name: "Configure AWS Credentials" Action For GitHub Actions
+        uses: aws-actions/configure-aws-credentials@v1
+        role-to-assume: arn:aws:iam::536583961527:role/githubActions
+        aws-region: us-east-1
+
 
 
 
