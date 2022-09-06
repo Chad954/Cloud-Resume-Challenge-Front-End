@@ -1,36 +1,24 @@
 name: Upload Website
 
 on:
- push:
-   branches:
-     - main
+  push:
+    branches:
+    - master
 
 jobs:
- Deploy:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Checkout
-       uses: actions/checkout@v2
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: kersvers/s3-sync-with-cloudfront-invalidation@v1.0.0
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_S3_BUCKET: 'chadportfoliowebsite1'
+        DISTRIBUTION_ID: 'E3JXKZXY42H75R'
+        AWS_REGION: 'us-east-1'   # optional: defaults to us-east-1
 
-     - name: Setup node
-       uses: actions/setup-node@v2
-
-     - name: Install dependencies
-       run: npm install
-
-     - name: Build static file
-       run: CI=false npm run build
-
-      - name: "Configure AWS Credentials" Action For GitHub Actions
-        uses: aws-actions/configure-aws-credentials@v1
-        role-to-assume: arn:aws:iam::536583961527:role/githubActions
-        aws-region: us-east-1
-
-
-
-
-     - name: Deploy static site to S3 bucket
-       run: aws s3 sync ./build s3://chadportfoliowebsite1
-
-
+        
 
