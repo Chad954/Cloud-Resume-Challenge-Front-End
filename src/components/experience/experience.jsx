@@ -52,7 +52,7 @@ const experience = () => {
             <article className='experience__details'>
               <BsCloudCheck classname='experience__details-icon' />
               <div>
-                <h4>SQL</h4>
+                <h4>CI/CD</h4>
               </div>
             </article>
             <article className='experience__details'>
