@@ -1,5 +1,5 @@
 import React from 'react'
-import RESUME2 from "../../assets/resume2.PDF"
+import RESUME3 from "../../assets/resume2.PDF"
 
 const CTA = () => {
   return (
